@@ -1,0 +1,17 @@
+.footer-lewagon {
+  background-color: #166678;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-lewagon p {
+  color: white;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.footer-lewagon p:not(:last-child) {
+  margin-right: 10px;
+}
