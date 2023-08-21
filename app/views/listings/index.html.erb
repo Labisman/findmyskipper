@@ -1,7 +1,8 @@
 <h1>My Listings</h1>
 
 <%@listings.each do |listing|%>
-  <%= link_to(task.title, listing.description task_path(task)) %>
+  <ul>
+  <li><%=listing.title%></li>,
+  <li><%=listing.description%></li>
+  </ul>
 <%end%>
-
-<%= link_to("Add a new task", tasks_new_path) %>
