@@ -1,5 +1,35 @@
-<h1>My Skipper</h1>
 
+<div>
+  <h2><%= @listing.title %></h2>
+  <div>
+    <img src="" alt="">
+  </div>
+  <div>
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+  </div>
+</div>
+
+<div>
+  <h2>
+    <%= @listing.description %>
+    <%= @listing.listing_address %>
+    <%= @listing.rating %>
+  </h2>
+  <div>
+    <div>
+      Calendar Start
+    </div>
+    <div>
+      Calendar End
+    </div>
+    <div>
+      Booking Placing
+    </div>
+  </div>
+</div>
 <p><%= @listing.title %></p>
 <p><%= @listing.description %></p>
 <p><%= @listing.listing_address %></p>
