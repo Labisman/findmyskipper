@@ -50,6 +50,6 @@ end
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :rating, :listing_address)
+    params.require(:listing).permit(:title, :description, :rating, :listing_address, photos: [])
   end
 end
