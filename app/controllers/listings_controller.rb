@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
 def index
   @listings = Listing.all
@@ -14,6 +15,7 @@ end
 
 def create
   @listing = Listing.new(listing_params)
+  @listing.user = current_user
   respond_to do |format|
     if @listing.save
       format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
@@ -28,19 +30,19 @@ end
 def edit
 end
 
-def update
-  if @listing.update(listing_params)
-    redirect_to @listing, notice: "Listing was successfully updated."
-  else
-    render :edit
+  def update
+    if @listing.update(listing_params)
+      redirect_to @listing, notice: "Listing was successfully updated."
+    else
+      render :edit
+    end
   end
-end
 
-def destroy
-  @listing.destroy
-end
+  def destroy
+    @listing.destroy
+  end
 
-private
+  private
 
   def set_listing
     @listing = Listing.find(params[:id])
