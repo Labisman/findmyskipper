@@ -13,8 +13,16 @@ def new
 end
 
 def create
-  @listing = Listing.new
-  @listing.save
+  @listing = Listing.new(listing_params)
+  respond_to do |format|
+    if @listing.save
+      format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
+      format.json { render :show, status: :created, location: @listing }
+    else
+      format.html { render :new, status: :unprocessable_entity }
+      format.json { render json: @listing.errors, status: :unprocessable_entity }
+    end
+  end
 end
 
 def edit
@@ -34,12 +42,11 @@ end
 
 private
 
-def set_listing
-  @listing = Listing.find(params[:id])
-end
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
 
-def listing_params
-  params.require(:listing).permit(:title, :description, :rating, :user_id, :listing_address)
-end
-
+  def listing_params
+    params.require(:listing).permit(:title, :description, :rating, :listing_address)
+  end
 end
