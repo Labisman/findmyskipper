@@ -1,0 +1,34 @@
+.container-listing-show {
+  border: 2px solid pink;
+}
+
+.card-title-photo {
+  border: 2px solid red;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.card-booking-details {
+  border: 2px solid green;
+}
+
+.card-grid {
+  width: 80%;
+}
+
+.main-show-photo {
+  grid-area: 1 / 1 / 3 / 2;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.div2 { grid-area: 1 / 2 / 2 / 3; width: 35% }
+.div3 { grid-area: 1 / 3 / 2 / 4; width: 35% }
+.div4 { grid-area: 2 / 2 / 3 / 3; width: 35% }
+.div5 { grid-area: 2 / 3 / 3 / 4; width: 35% }
