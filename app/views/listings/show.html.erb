@@ -30,3 +30,13 @@
     </div>
   </div>
 </div>
+<p><%= @listing.title %></p>
+<p><%= @listing.description %></p>
+<p><%= @listing.listing_address %></p>
+<p><%= @listing.rating %></p>
+<% if @listing.photos.attached?  %>
+  <% @listing.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+<% end %>
+<%= link_to "Book this skipper", new_listing_booking_path(@listing) %>
