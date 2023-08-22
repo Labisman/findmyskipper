@@ -1,0 +1,29 @@
+<h1>Your Account</h1>
+
+<%= @user.email %>
+
+<h2>Your Bookings</h2>
+<% if @user.bookings.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Listing</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.listing.title %></td>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.end_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>You haven't made any bookings yet.</p>
+<% end %>
+
+<%= link_to "Edit Your Account", edit_registration_path(@user) %>
