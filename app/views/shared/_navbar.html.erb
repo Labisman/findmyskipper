@@ -1,8 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "logo4.png" %>
-      <p>FindMySkipper</p>
+    <%= link_to listings_path, class: "navbar-brand" do %>
+  <%= image_tag "logo4.png" %>
+  <p>FindMySkipper</p>
     <% end %>
     <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
       <div class="search-form-control form-group">
@@ -19,8 +19,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+         <li class="nav-item active">
+          <%= link_to "My Account", accounts_show_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

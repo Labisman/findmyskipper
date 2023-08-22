@@ -1,1 +1,11 @@
 <%= render "shared/grid", listings: @listings %>
+<h1>My Listings</h1>
+<%= link_to "New Listing", new_listing_path %>
+
+<%@listings.each do |listing|%>
+  <ul>
+  <li><%=listing.title%></li>
+  <li><%=listing.description%></li>
+  <%= link_to "View this listing", listing %>
+  </ul>
+<%end%>
