@@ -12,11 +12,8 @@
       </button>
       </div>
     </form>
-    <% if @user.present? && @user.photo.present? %>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill, alt: "Navbar Toggler Image" %>
   </button>
-    <% end %>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -25,7 +22,9 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "", class: "avatar", alt: "dropdown menu" %>
+          <% if user_signed_in? && current_user.photo.attached? %>
+          <%= cl_image_tag current_user.photo.key, height: 50, width: 70, crop: :fill, alt: "Navbar Toggler Image" %>
+          <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Become a Skipper", new_listing_path, class: "dropdown-item" %>
