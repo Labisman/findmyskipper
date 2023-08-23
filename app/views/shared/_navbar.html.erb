@@ -22,9 +22,7 @@
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <% if user_signed_in? && current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, height: 50, width: 70, crop: :fill, alt: "Navbar Toggler Image" %>
-          <% end %>
+            <%= cl_image_tag current_user.photo.key, style: "object-fit: cover", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Become a Skipper", new_listing_path, class: "dropdown-item" %>
