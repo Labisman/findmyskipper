@@ -14,6 +14,7 @@
   font-size: 16px;
   font-weight: bold;
   margin: 0;
+  color: #166678;
 }
 
 .card-listing p {
@@ -22,6 +23,21 @@
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.card-listing-infos button {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 20px;
+  background-color: #166678;
+  border-color: white;
+
+  &:hover {
+    background-color: #7db9b3;
+  }
+}
 
 .card-listing .card-listing-infos {
   padding: 16px;
