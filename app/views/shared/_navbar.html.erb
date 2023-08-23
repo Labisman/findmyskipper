@@ -12,8 +12,7 @@
       </button>
       </div>
     </form>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
@@ -21,9 +20,11 @@
           <%= link_to "My Account", accounts_show_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= cl_image_tag current_user.photo.key, style: "object-fit: cover", class: "avatar", alt: "dropdown menu" %>
-          </a>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, style: "object-fit: cover", id: "navbarDropdown", class: "avatar dropdown-toggle", alt: "dropdown menu", data: { bs_toggle: "dropdown"}, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% else %>
+              <li class="nav-link" class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</li>
+            <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Become a Skipper", new_listing_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
