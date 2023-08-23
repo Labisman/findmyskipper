@@ -42,3 +42,7 @@
   <% end %>
 <% end %>
 <%= link_to "Book this skipper", new_listing_booking_path(@listing) %>
+<%= link_to "Edit this listing", edit_listing_path(@listing) %> |
+  <%= link_to "Back to listings", listings_path %>
+
+  <%= button_to "Destroy this listing", @listing, method: :delete %>

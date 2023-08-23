@@ -1,7 +1,7 @@
 <h1>Your Account</h1>
 
 <%= @user.email %>
-
+<%= cl_image_tag @user.photo.key, height: 300, width: 400, crop: :fill %>
 <h2>Your Bookings</h2>
 <% if @user.bookings.any? %>
   <table>
