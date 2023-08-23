@@ -14,12 +14,14 @@
     </thead>
     <tbody>
       <% @user.bookings.each do |booking| %>
-        <tr>
-          <td><%= booking.listing.title %></td>
-          <td><%= booking.start_date %></td>
-          <td><%= booking.end_date %></td>
-        </tr>
-      <% end %>
+  <tr>
+    <td><%= booking.listing.title %></td>
+    <td><%= booking.start_date %></td>
+    <td><%= booking.end_date %></td>
+    <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
+    <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+  </tr>
+<% end %>
     </tbody>
   </table>
 <% else %>
