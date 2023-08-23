@@ -1,0 +1,35 @@
+.card-grid {
+  display: flex;
+}
+
+.card-main-image {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.card-main-image img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.card-smaller-images {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.card-smaller-images img {
+  width: 100%;
+  height: 200px;
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.listing-title, .card-booking-details {
+  margin-left: 75px;
+  color: #166678;
+
+}
