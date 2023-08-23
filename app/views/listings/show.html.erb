@@ -2,13 +2,19 @@
   <h2 class="listing-title"><%= @listing.title %></h2>
   <div class="card-grid">
     <div class="card-main-image">
-     <img class="main-show-photo" src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
+     <%# <img class="main-show-photo" src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt=""> %>
+      <%= cl_image_tag @listing.photos.first.key, height: '450px', style: "object-fit: cover" %>
     </div>
     <div class="card-smaller-images">
+      <% if @listing.photos.attached?  %>
+        <% @listing.photos.last(4).each do |photo| %>
+        <%= cl_image_tag photo.key,  style: "object-fit: cover" %>
+        <% end %>
+      <% end %>
+      <%# <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
       <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
       <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt=""> %>
     </div>
   </div>
 
@@ -36,11 +42,7 @@
 <p><%= @listing.description %></p>
 <p><%= @listing.listing_address %></p>
 <p><%= @listing.rating %></p>
-<% if @listing.photos.attached?  %>
-  <% @listing.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
-<% end %>
+
 <%= link_to "Book this skipper", new_listing_booking_path(@listing) %>
 <%= link_to "Edit this listing", edit_listing_path(@listing) %> |
   <%= link_to "Back to listings", listings_path %>
