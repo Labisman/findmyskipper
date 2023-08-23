@@ -1,0 +1,7 @@
+<%@bookings.each do |booking|%>
+  <ul>
+  <li><%=booking.start_date%></li>
+  <li><%=booking.end_date%></li>
+  <%= link_to "View this booking", booking %>
+  </ul>
+<%end%>
