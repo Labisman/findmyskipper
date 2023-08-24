@@ -2,7 +2,6 @@
   <h2 class="listing-title"><%= @listing.title %></h2>
   <div class="card-grid">
     <div class="card-main-image">
-     <%# <img class="main-show-photo" src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt=""> %>
       <% if @listing.photos.attached? %>
       <%= cl_image_tag @listing.photos.first.key, height: '450px', style: "object-fit: cover" %>
       <% end %>
@@ -13,37 +12,19 @@
         <%= cl_image_tag photo.key,  style: "object-fit: cover" %>
         <% end %>
       <% end %>
-      <%# <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="">
-      <img src="https://images.unsplash.com/photo-1692684583465-6230fa0ccb1b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt=""> %>
     </div>
   </div>
 
   <div class="card-booking-details">
     <h2>
-      <%= @listing.description %>
-      <%= @listing.listing_address %>
-      <%= @listing.rating %>
-      <%= link_to "Book this skipper", new_listing_booking_path(@listing) %>
+      <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
       <% if @listing.user == current_user%>
-      <%= link_to "Edit this listing", edit_listing_path(@listing) %> |
+      <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
       <% end %>
-      <%= link_to "Back to listings", listings_path %>
+      <a class="button-link" href="<%= listings_path %>">Back to listings</a>
       <% if @listing.user == current_user %>
-      <%= button_to "Destroy this listing", @listing, method: :delete %>
+      <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
       <% end %>
     </h2>
-    <div class="calendar-booking-details">
-      <div class="calendar-start">
-        Calendar Start
-      </div>
-      <div class="calendar-end">
-        Calendar End
-      </div>
-      <div class="booking-placing">
-        Booking Placing
-      </div>
-    </div>
   </div>
 </div>
