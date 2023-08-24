@@ -5,7 +5,7 @@
   <p id="logoname">FindMySkipper</p>
     <% end %>
     <%= form_with(url: listings_path, method: "get", local: true, class: "search-form-control form-group") do |form| %>
-  <%= form.text_field :query, class: "form-control string required", id: "search_query", placeholder: "" %>
+  <%= form.text_field :query, class: "form-control string required", id: "search_query", placeholder: "Search Skipper by name/location..." %>
   <%= form.button type: "submit", class: "btn btn-flat" do %>
     <i class="fas fa-search"></i> Search
   <% end %>
