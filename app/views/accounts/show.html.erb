@@ -1,51 +1,75 @@
-<h2>My Bookings</h1>
+<div class="container">
+  <div>
+    <h2>My Bookings</h1>
+    <p><%= @user.email %></p>
+  </div>
+</div>
 
-<p><%= @user.email %></p>
 <div data-controller="toggle">
-<% if @past_bookings.any? || @future_bookings.any? %>
-<button data-action="click->toggle#fire" class="btn btn-outline-primary">Past bookings</button>
-  <button data-action="click->toggle#future" class="btn btn-outline-primary">Upcoming bookings</button>
+  <% if @past_bookings.any? || @future_bookings.any? %>
+  <div class="container">
+    <button data-action="click->toggle#fire" class="btn btn-ghost">Past bookings</button>
+    <button data-action="click->toggle#future" class="btn btn-ghost">Upcoming bookings</button>
+  </div>
+
   <div class="card-grid">
+    <div class="container">
+
       <div data-toggle-target="togglableElement" class="d-none">
-       <tr>
-        <th>Listing</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-      </tr>
-      <% @past_bookings.each do |booking| %>
-      <div class= "card-listing">
-    <tr >
-      <td><%= booking.listing.title %></td>
-      <td><%= booking.start_date %></td>
-      <td><%= booking.end_date %></td>
-      <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
-      <td><%= button_to "Delete this booking", booking, method: :delete %></td>
-    </tr>
+        <% @past_bookings.each do |booking| %>
+          <div class="card-product">
+            <% if booking.listing.user.photo.attached? %>
+              <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
+            <% end %>
+            <tr>
+              <div class="card-product-infos">
+                <h2><td><%= booking.listing.title %></td></h2>
+                <p><td><%= booking.start_date %></td></p>
+                <p><td><%= booking.end_date %></td></p>
+                <%= link_to edit_booking_path(booking) do %>
+                  <i class="fa-regular fa-pen-to-square" style="color: #186678;"></i>
+                <% end %>
+                <%# <td><%= link_to "Edit Booking", edit_booking_path(booking)</td> %>
+                <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+                <i class="fa-solid fa-trash-can" style="color: #186678;"></i>
+              </div>
+            </tr>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-  <% end %>
+      <div class="container">
+        <div data-toggle-target="togglefutureElement" class="d-none">
+          <% @future_bookings.each do |booking| %>
+            <div class="card-product">
+              <% if booking.listing.user.photo.attached? %>
+                <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
+              <% end %>
+              <div class= "card-product-infos">
+                <tr>
+                  <h2><td><%= booking.listing.title %></td></h2>
+                  <p><td><%= booking.start_date %></td></p>
+                  <p><td><%= booking.end_date %></td></p>
+                  <%= link_to edit_booking_path(booking) do %>
+                    <i class="fa-regular fa-pen-to-square" style="color: #186678;"></i>
+                  <% end %>
+                  <%# <td><%= link_to "Edit Booking", edit_booking_path(booking)</td> %>
+                  <%# <%= link_to booking(booking), method: :delete %>
+                  <%# <i class="fa-solid fa-trash-can" style="color: #186678;"></i> %>
+                  <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+                  <i class="fa-regular fa-trash-can"></i>
+                </tr>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-<div data-toggle-target="togglefutureElement" class="d-none">
- <tr>
-        <th>Listing</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-      </tr>
-  <% @future_bookings.each do |booking| %>
-  <div class= "card-listing">
-    <tr>
-      <td><%= booking.listing.title %></td>
-      <td><%= booking.start_date %></td>
-      <td><%= booking.end_date %></td>
-      <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
-      <td><%= button_to "Delete this booking", booking, method: :delete %></td>
-    </tr>
-    </div>
-  <% end %>
   </div>
-  </div>
+
 <% else %>
   <p>You haven't made any bookings yet.</p>
 <% end %>
 </div>
-<%= link_to "Edit Your Account", edit_registration_path(@user) %>
+
+<%# <%= link_to "Edit Your Account", edit_registration_path(@user) %>
