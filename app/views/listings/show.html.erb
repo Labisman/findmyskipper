@@ -17,15 +17,13 @@
 
   <div class="card-booking-details">
     <h2>
+    <a class="button-link" href="<%= listings_path %>">Back to listings</a>
       <% if @listing.user != current_user%>
-      <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
+        <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
       <% end %>
       <% if @listing.user == current_user%>
-      <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
-      <% end %>
-      <a class="button-link" href="<%= listings_path %>">Back to listings</a>
-      <% if @listing.user == current_user %>
-      <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
+        <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
+        <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
       <% end %>
     </h2>
   </div>

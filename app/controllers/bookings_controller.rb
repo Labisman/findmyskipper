@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:new, :create]
+  before_action :authenticate_user!, only: :new
 
   def new
     @listing = Listing.find(params[:listing_id])
