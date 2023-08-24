@@ -17,7 +17,9 @@
 
   <div class="card-booking-details">
     <h2>
+      <% if @listing.user != current_user%>
       <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
+      <% end %>
       <% if @listing.user == current_user%>
       <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
       <% end %>
