@@ -1,3 +1,4 @@
+<div class="form-container">
 <%= simple_form_for(listing) do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
@@ -5,3 +6,4 @@
   <%= f.input :photos, as: :file, input_html: { multiple:true, required:false }%>
   <%= f.submit %>
 <% end %>
+</div>
