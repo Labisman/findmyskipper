@@ -21,6 +21,7 @@
   </div>
 
   <div class="card-booking-details">
+<<<<<<< HEAD
     <h2>
       <%= @listing.description %>
       <%= @listing.listing_address %>
@@ -34,6 +35,14 @@
       <%= button_to "Destroy this listing", @listing, method: :delete %>
       <% end %>
     </h2>
+=======
+  <h2>
+    <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
+    <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
+    <a class="button-link" href="<%= listings_path %>">Back to listings</a>
+    <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
+  </h2>
+>>>>>>> 717626f046b9a154e1840a25226972ccd33edc6e
     <div class="calendar-booking-details">
       <div class="calendar-start">
         Calendar Start
