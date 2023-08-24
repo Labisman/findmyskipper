@@ -5,6 +5,17 @@
   </div>
 </div>
 
+<p>Welcome <%= @user.email %></p>
+
+<% current_user.received_bookings.each do |booking| %>
+<% if booking.status == "pending" %>
+<%= booking.start_date %>
+<%= booking.end_date %>
+<%= link_to "Accept", accept_path(booking), data: {turbo_method: :patch} %>
+<%= link_to "Reject", reject_path(booking), data: {turbo_method: :patch} %>
+<% end %>
+<% end %>
+
 <div data-controller="toggle">
   <% if @past_bookings.any? || @future_bookings.any? %>
   <div class="container">

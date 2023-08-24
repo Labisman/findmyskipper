@@ -40,6 +40,13 @@ p {
   display: inline-block;
 }
 
+.form-control {
+&::placeholder {
+  opacity: 0.4;
+  color: #7db9b3;
+}
+}
+
 .search-form-control .btn {
   position: absolute;
   color: #7db9b3;
@@ -50,7 +57,9 @@ p {
 
 .search-form-control .form-control {
   height: 3.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  width: 400px;
+  border-radius: 30px;
+  box-shadow: 3px 6px 8px rgba(0,0,0,0.08);
   border: 1px solid #E7E7E7;
 }
 
