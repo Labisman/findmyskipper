@@ -25,7 +25,7 @@
     <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
     <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
     <a class="button-link" href="<%= listings_path %>">Back to listings</a>
-    <a class="button-link destroy-button" href="<%= new_listing_booking_path(@listing) %>">Destroy this listing</a>
+    <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
   </h2>
     <div class="calendar-booking-details">
       <div class="calendar-start">
