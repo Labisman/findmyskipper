@@ -4,10 +4,6 @@ class ListingsController < ApplicationController
 
 def index
   @listings = Listing.all
-  if params[:query].present?
-    sql_subquery = "title ILIKE :query OR listing_address ILIKE :query"
-    @listings = @listings.where(sql_subquery, query: "%#{params[:query]}%")
-  end
 end
 
 def show
@@ -21,6 +17,11 @@ def create
   @listing = Listing.new(listing_params)
   @listing.user = current_user
   respond_to do |format|
+    if params[:listing][:photos].present?
+      params[:listing][:photos].each do |photo|
+        @listing.photos.attach(photo)
+      end
+    end
     if @listing.save
       format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
       format.json { render :show, status: :created, location: @listing }
@@ -35,6 +36,11 @@ def edit
 end
 
   def update
+    if params[:listing][:photos].present?
+      params[:listing][:photos].each do |photo|
+      @listing.photos.attach(photo)
+    end
+    end
     if @listing.update(listing_params)
       redirect_to @listing, notice: "Listing was successfully updated."
     else
@@ -54,6 +60,6 @@ end
   end
 
   def listing_params
-    params.require(:listing).permit(:title, :description, :rating, :listing_address, photos: [])
+    params.require(:listing).permit(:title, :description, :rating, :listing_address)
   end
 end
