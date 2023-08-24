@@ -1,7 +1,6 @@
 <%= simple_form_for(listing) do |f| %>
   <%= f.input :title %>
   <%= f.input :description %>
-  <%= f.input :rating %>
   <%= f.input :listing_address %>
   <%= f.input :photos, as: :file, input_html: { multiple:true, required:false }%>
   <%= f.submit %>
