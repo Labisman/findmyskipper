@@ -1,6 +1,7 @@
+
 <div class="card-listing">
    <% if listing.photos.attached? %>
-    <%= cl_image_tag listing.photos.first.key %>
+   <a href="<%= listing_path(listing) %>"><%= cl_image_tag listing.photos.first.key %></a>
     <% else %>
     <img src="cloudinary"/>
     <% end %>
@@ -8,7 +9,6 @@
     <div>
       <h2><%= listing.title %></h2>
       <p><%= listing.description %></p>
-      <button type="button" class="btn btn-info"><%= link_to "Show", listing %></button>
     </div>
     <h2 class="card-listing-pricing">Rating: <%= listing.rating %></h2>
     <% if listing.user.photo.attached? %>
