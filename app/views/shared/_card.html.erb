@@ -1,5 +1,9 @@
 <div class="card-listing">
-  <img src="cloudinary" />
+   <% if listing.photos.attached? %>
+    <%= cl_image_tag listing.photos.first.key %>
+    <% else %>
+    <img src="cloudinary"/>
+    <% end %>
   <div class="card-listing-infos">
     <div>
       <h2><%= listing.title %></h2>
@@ -7,6 +11,10 @@
       <button type="button" class="btn btn-info"><%= link_to "Show", listing %></button>
     </div>
     <h2 class="card-listing-pricing">Rating: <%= listing.rating %></h2>
+    <% if listing.user.photo.attached? %>
+    <%= cl_image_tag listing.user.photo.key, class: "card-listing-user avatar-bordered" %>
+    <% else %>
     <img src="cloudinary" class="card-listing-user avatar-bordered" />
+    <% end %>
   </div>
 </div>
