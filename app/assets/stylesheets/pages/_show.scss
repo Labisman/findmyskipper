@@ -50,3 +50,33 @@ h2 {
 .card-booking-details > h2 {
   margin: 15px;
 }
+
+.button-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.destroy-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.button-link.destroy-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
