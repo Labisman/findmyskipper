@@ -1,30 +1,51 @@
-<h1>Your Account</h1>
+<h2>My Bookings</h1>
 
-<%= @user.email %>
-<h2>Your Bookings</h2>
-<% if @user.bookings.any? %>
-  <table>
-    <thead>
-      <tr>
+<p><%= @user.email %></p>
+<div data-controller="toggle">
+<% if @past_bookings.any? || @future_bookings.any? %>
+<button data-action="click->toggle#fire" class="btn btn-outline-primary">Past bookings</button>
+  <button data-action="click->toggle#future" class="btn btn-outline-primary">Upcoming bookings</button>
+  <div class="card-grid">
+      <div data-toggle-target="togglableElement" class="d-none">
+       <tr>
         <th>Listing</th>
         <th>Start Date</th>
         <th>End Date</th>
       </tr>
-    </thead>
-    <tbody>
-      <% @user.bookings.each do |booking| %>
-  <tr>
-    <td><%= booking.listing.title %></td>
-    <td><%= booking.start_date %></td>
-    <td><%= booking.end_date %></td>
-    <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
-    <td><%= button_to "Delete this booking", booking, method: :delete %></td>
-  </tr>
-<% end %>
-    </tbody>
-  </table>
+      <% @past_bookings.each do |booking| %>
+      <div class= "card-listing">
+    <tr >
+      <td><%= booking.listing.title %></td>
+      <td><%= booking.start_date %></td>
+      <td><%= booking.end_date %></td>
+      <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
+      <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+    </tr>
+    </div>
+
+  <% end %>
+      </div>
+<div data-toggle-target="togglefutureElement" class="d-none">
+ <tr>
+        <th>Listing</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+  <% @future_bookings.each do |booking| %>
+  <div class= "card-listing">
+    <tr>
+      <td><%= booking.listing.title %></td>
+      <td><%= booking.start_date %></td>
+      <td><%= booking.end_date %></td>
+      <td><%= link_to "Edit Booking", edit_booking_path(booking) %></td>
+      <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+    </tr>
+    </div>
+  <% end %>
+  </div>
+  </div>
 <% else %>
   <p>You haven't made any bookings yet.</p>
 <% end %>
-
+</div>
 <%= link_to "Edit Your Account", edit_registration_path(@user) %>
