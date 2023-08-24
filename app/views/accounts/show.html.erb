@@ -1,11 +1,8 @@
 <div class="container">
-  <div>
-    <h2>My Bookings</h1>
-    <p><%= @user.email %></p>
-  </div>
+  <h2>My Bookings</h1></div>
+  <div class="container">
+  <p>Welcome <%= @user.email %></p>
 </div>
-
-<p>Welcome <%= @user.email %></p>
 
 <% current_user.received_bookings.each do |booking| %>
 <% if booking.status == "pending" %>
