@@ -1,13 +1,26 @@
 .card-listing {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-}
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  border-radius: 5px;
 
-.card-listing > img {
+   &:hover {
+    box-shadow: 0 10px 25px rgba(210, 208, 208, 0.8);
+    transition: 0.3s;
+  }
+  }
+
+
+.card-listing > a > img {
   height: 200px;
   width: 100%;
   object-fit: cover;
+
+ &:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(210, 208, 208, 0.8);
+  transition: 0.3s;
+ }
 }
 
 .card-listing h2 {

@@ -3,6 +3,9 @@ class AccountsController < ApplicationController
   before_action :set_user
   def show
     @user = current_user
+    @bookings = @user.bookings
+    @past_bookings = @bookings.select { |booking| booking.end_date < Date.today }
+    @future_bookings = @bookings.select { |booking| booking.end_date >= Date.today }
   end
 
   def index

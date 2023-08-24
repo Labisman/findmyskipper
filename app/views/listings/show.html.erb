@@ -22,14 +22,28 @@
 
   <div class="card-booking-details">
     <h2>
-      <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
+      <%= @listing.description %>
+      <%= @listing.listing_address %>
+      <%= @listing.rating %>
+      <%= link_to "Book this skipper", new_listing_booking_path(@listing) %>
       <% if @listing.user == current_user%>
-      <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
+      <%= link_to "Edit this listing", edit_listing_path(@listing) %> |
       <% end %>
-      <a class="button-link" href="<%= listings_path %>">Back to listings</a>
+      <%= link_to "Back to listings", listings_path %>
       <% if @listing.user == current_user %>
-      <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
+      <%= button_to "Destroy this listing", @listing, method: :delete %>
       <% end %>
     </h2>
+    <div class="calendar-booking-details">
+      <div class="calendar-start">
+        Calendar Start
+      </div>
+      <div class="calendar-end">
+        Calendar End
+      </div>
+      <div class="booking-placing">
+        Booking Placing
+      </div>
+    </div>
   </div>
 </div>
