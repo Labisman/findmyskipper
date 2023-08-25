@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:new, :create]
+  before_action :set_listing, only: [:new, :create]
+  before_action :set_booking, only: [:accept, :reject, :show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: :new
 
   def new
@@ -25,14 +26,12 @@ class BookingsController < ApplicationController
   end
 
   def accept
-    @booking = Booking.find(params[:id])
     @booking.status = "accepted"
     @booking.save
     redirect_to "/accounts/show"
   end
 
   def reject
-    @booking = Booking.find(params[:id])
     @booking.status = "rejected"
     @booking.save
     redirect_to "/accounts/show"
@@ -43,30 +42,31 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find(params[:id])
   end
 
   def update
     if @booking.update(booking_params)
-      redirect_to @booking, notice: "Listing was successfully updated."
+      redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
     end
   end
 
   def edit
-    @booking = Booking.find(params[:id])
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
   end
 
   private
 
-  def set_booking
+  def set_listing
     @listing = Listing.find(params[:listing_id])
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:id])
   end
 
   def booking_params
