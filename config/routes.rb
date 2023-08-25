@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:destroy, :update, :edit, :show]
+  post "bookings/:id", to: "bookings#destroy", as: "destroy"
   patch "/bookings/:id/accept", to: "bookings#accept", as: "accept"
   patch "/bookings/:id/reject", to: "bookings#reject", as: "reject"
 end

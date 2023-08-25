@@ -61,6 +61,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
+    redirect_to '/accounts/show', status: :see_other, notice: "Your booking was successfully deleted."
   end
 
   private
