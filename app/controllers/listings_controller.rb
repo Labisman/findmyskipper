@@ -17,12 +17,6 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
-
-  def create
-    @listing = Listing.new(listing_params)
-    @listing.user = current_user
-    respond_to do |format|
-    if params[:listing][:photos].present?
 def create
   @listing = Listing.new(listing_params_create)
   @listing.user = current_user
@@ -49,8 +43,8 @@ def create
   end
 
   def update
-    if params[:listing][:photos].present?
-      params[:listing][:photos].each do |photo|
+      if params[:listing][:photos].present?
+        params[:listing][:photos].each do |photo|
         @listing.photos.attach(photo)
       end
     end
