@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, alert: "Booking was unsuccessful." }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
