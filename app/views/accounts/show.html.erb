@@ -1,31 +1,30 @@
-<div class="container">
-  <h2>My Bookings</h1></div>
-  <div class="container">
-  <p>Welcome <%= @user.email %></p>
-</div>
-<p class="container">Pending Bookings</p>
 
-<div class="container">
-    <% current_user.received_bookings.each do |booking| %>
-  <div class="card-product">
-    <% if booking.status == "pending" %>
-      <% if booking.listing.user.photo.attached? %>
-          <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
-          <% end %>
-    <%= booking.start_date %>
-    <%= booking.end_date %>
-     <%= link_to accept_path(booking, {status: "confirmed"}), data: {turbo_method: :patch} do %>
-            <i class="fa-solid fa-circle-check" style="color: #186678;"></i>
-            <% end %>
-    <%# <%= link_to "Accept", accept_path(booking), data: {turbo_method: :patch} %>
-    <%# <%= link_to "Reject", reject_path(booking), data: {turbo_method: :patch} %>
-    <%= link_to reject_path(booking, {status: "cancelled"}), data: {turbo_method: :patch} do %>
-     <i class="fa-solid fa-trash-can" style="color: #186678;"></i>
-      <% end %>
-    <% end %>
-  </div>
-    <% end %>
+<div class="container flex-column align-items-center">
+  <p>Welcome <%= @user.email %></p>
+  <button class="btn btn-ghost" style="align-item:center;">Pending Bookings</button>
 </div>
+
+<div class="bookings-container">
+  <% current_user.received_bookings.each do |booking| %>
+    <% if booking.status == "pending" %>
+      <div class="card-product">
+        <% if booking.listing.user.photo.attached? %>
+          <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
+        <% end %>
+        <%= booking.start_date %>
+        <%= booking.end_date %>
+        <%= link_to accept_path(booking, {status: "confirmed"}), data: {turbo_method: :patch} do %>
+          <i class="fa-sharp fa-regular fa-circle-check" style="color: #00bd16;"></i>
+        <% end %>
+        <%= link_to reject_path(booking, {status: "cancelled"}), data: {turbo_method: :patch} do %>
+          <i class="fa-sharp fa-regular fa-circle-xmark" style="color: #f50000;"></i>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
 
 <div data-controller="toggle">
   <% if @past_bookings.any? || @future_bookings.any? %>
@@ -96,4 +95,4 @@
 <% end %>
 </div>
 
-<%# <%= link_to "Edit Your Account", edit_registration_path(@user) %>
+

@@ -12,14 +12,19 @@
   </head>
 
   <body>
-  <%= render "shared/navbar" %>
-  <% if flash[:notice].present? %>
-    <p class="notice"><%= flash[:notice] %></p>
-  <% end %>
-  <% if flash[:alert].present? %>
-    <p class="alert"><%= flash[:alert] %></p>
-  <% end %>
-  <%= yield %>
-  <%= render "shared/footer" %>
+    <div class="content-container">
+      <div>
+        <%= render "shared/navbar" %>
+        <% if flash[:notice].present? %>
+          <p class="notice"><%= flash[:notice] %></p>
+        <% end %>
+         <% if flash[:alert].present? %>
+          <p class="alert"><%= flash[:alert] %></p>
+        <% end %>
+        <%= yield %>
+      </div>
+      
+      <%= render "shared/footer" %>
+    </div>
   </body>
 </html>
