@@ -14,19 +14,39 @@
       <% end %>
     </div>
   </div>
-  <%= @listing.title %>
-  <%= @listing.listing_address %>
-  <%= @listing.rating %>
+
+  <div class="card-product">
+     <% if @listing.user.photo.attached? %>
+     <%= cl_image_tag @listing.user.photo.key %>
+     <% else %>
+     <img src="cloudinary" class="card-listing-user avatar-bordered" />
+     <% end %>
+   <div class="card-product-infos">
+    <h2>Location: <%= @listing.listing_address %></h2>
+    <h2>Description: <%= @listing.description %></h2>
+    <% @listing.rating.times do %>
+    <p><i class="fa-solid fa-star"></i></p>
+    <% end %>
+    <% (5 - @listing.rating).times do %>
+    <p><i class="fa-regular fa-star"></i></p>
+    <% end %>
+   </div>
+  </div>
+
 
   <div class="card-booking-details">
     <h2>
-    <a class="button-link" href="<%= listings_path %>">Back to listings</a>
+    <a class="button-link" id="back" href="<%= listings_path %>">Back</a>
       <% if @listing.user != current_user%>
         <a class="button-link" href="<%= new_listing_booking_path(@listing) %>">Book this skipper</a>
       <% end %>
       <% if @listing.user == current_user%>
-        <a class="button-link" href="<%= edit_listing_path(@listing) %>">Edit this listing</a>
-        <%= link_to "Destroy this listing", listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" %>
+        <%= link_to edit_listing_path(@listing), class: "button-link" do %>
+        <i class="fa-regular fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to listing_path(@listing), data:{turbo_method: :delete}, class: "button-link destroy-button" do %>
+        <i class="fa-solid fa-trash-can"></i>
+        <% end %>
       <% end %>
     </h2>
   </div>
