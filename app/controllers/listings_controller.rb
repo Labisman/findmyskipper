@@ -4,6 +4,10 @@ class ListingsController < ApplicationController
 
 def index
   @listings = Listing.all
+  if params[:query].present?
+    sql_subquery = "title ILIKE :query OR listing_address ILIKE :query"
+    @listings = @listings.where(sql_subquery, query: "%#{params[:query]}%")
+  end
 end
 
 def show
