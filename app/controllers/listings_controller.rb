@@ -17,14 +17,22 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
+
   def create
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     respond_to do |format|
     if params[:listing][:photos].present?
+def create
+  @listing = Listing.new(listing_params_create)
+  @listing.user = current_user
+    respond_to do |format|
+      if params[:listing][:photos].present?
       params[:listing][:photos].each do |photo|
-        @listing.photos.attach(photo)
+          @listing.photos.attach(photo)
+        end
       end
+
     end
 
     if @listing.save
@@ -46,7 +54,11 @@ class ListingsController < ApplicationController
         @listing.photos.attach(photo)
       end
     end
+
     if @listing.update(listin g_params)
+
+    if @listing.update(listing_params_update)
+
       redirect_to @listing, notice: "Listing was successfully updated."
     else
       render :edit
@@ -64,7 +76,11 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
-  def listing_params
-    params.require(:listing).permit(:title, :description, :rating, :listing_address)
+  def listing_params_update
+    params.require(:listing).permit(:title, :description, :listing_address)
+  end
+
+  def listing_params_create
+    params.require(:listing).permit(:title, :description, :listing_address, photos:[])
   end
 end
