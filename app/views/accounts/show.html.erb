@@ -11,14 +11,15 @@
         <% if booking.listing.user.photo.attached? %>
           <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
         <% end %>
-        <%= booking.start_date %>
-        <%= booking.end_date %>
-        <%= link_to accept_path(booking, {status: "confirmed"}), data: {turbo_method: :patch} do %>
-          <i class="fa-sharp fa-regular fa-circle-check" style="color: #00bd16;"></i>
+        <p>Start Date: <%= booking.start_date %></p>
+        <p>End Date: <%= booking.end_date %></p>
+        <h4><%= link_to accept_path(booking, {status: "confirmed"}), data: {turbo_method: :patch} do %>
+          <i class="fa-sharp fa-regular fa-circle-check" style="color: #00bd16;"></i></h4>
         <% end %>
-        <%= link_to reject_path(booking, {status: "cancelled"}), data: {turbo_method: :patch} do %>
+        <h4><%= link_to reject_path(booking, {status: "cancelled"}), data: {turbo_method: :patch} do %>
           <i class="fa-sharp fa-regular fa-circle-xmark" style="color: #f50000;"></i>
         <% end %>
+        </h4>
       </div>
     <% end %>
   <% end %>
@@ -94,5 +95,3 @@
   <p>You haven't made any bookings yet.</p>
 <% end %>
 </div>
-
-
