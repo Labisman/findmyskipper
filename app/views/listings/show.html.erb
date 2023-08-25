@@ -14,9 +14,25 @@
       <% end %>
     </div>
   </div>
-  <%= @listing.title %>
-  <%= @listing.listing_address %>
-  <%= @listing.rating %>
+
+  <div class="card-product">
+     <% if @listing.user.photo.attached? %>
+     <%= cl_image_tag @listing.user.photo.key %>
+     <% else %>
+     <img src="cloudinary" class="card-listing-user avatar-bordered" />
+     <% end %>
+   <div class="card-product-infos">
+    <h2>Location: <%= @listing.listing_address %></h2>
+    <h2>Description: <%= @listing.description %></h2>
+    <% @listing.rating.times do %>
+    <p><i class="fa-solid fa-star"></i></p>
+    <% end %>
+    <% (5 - @listing.rating).times do %>
+    <p><i class="fa-regular fa-star"></i></p>
+    <% end %>
+   </div>
+  </div>
+
 
   <div class="card-booking-details">
     <h2>
