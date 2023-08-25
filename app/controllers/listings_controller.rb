@@ -14,14 +14,14 @@ def new
 end
 
 def create
-  @listing = Listing.new(listing_params)
+  @listing = Listing.new(listing_params_create)
   @listing.user = current_user
-  respond_to do |format|
-    if params[:listing][:photos].present?
+    respond_to do |format|
+      if params[:listing][:photos].present?
       params[:listing][:photos].each do |photo|
-        @listing.photos.attach(photo)
+          @listing.photos.attach(photo)
+        end
       end
-    end
     if @listing.save
       format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
       format.json { render :show, status: :created, location: @listing }
@@ -41,7 +41,7 @@ end
       @listing.photos.attach(photo)
     end
     end
-    if @listing.update(listing_params)
+    if @listing.update(listing_params_update)
       redirect_to @listing, notice: "Listing was successfully updated."
     else
       render :edit
@@ -59,7 +59,11 @@ end
     @listing = Listing.find(params[:id])
   end
 
-  def listing_params
-    params.require(:listing).permit(:title, :description, :rating, :listing_address)
+  def listing_params_update
+    params.require(:listing).permit(:title, :description, :listing_address)
+  end
+
+  def listing_params_create
+    params.require(:listing).permit(:title, :description, :listing_address, photos:[])
   end
 end
