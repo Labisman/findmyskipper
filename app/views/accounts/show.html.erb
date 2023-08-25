@@ -3,15 +3,29 @@
   <div class="container">
   <p>Welcome <%= @user.email %></p>
 </div>
+<p class="container">Pending Bookings</p>
 
-<% current_user.received_bookings.each do |booking| %>
-<% if booking.status == "pending" %>
-<%= booking.start_date %>
-<%= booking.end_date %>
-<%= link_to "Accept", accept_path(booking), data: {turbo_method: :patch} %>
-<%= link_to "Reject", reject_path(booking), data: {turbo_method: :patch} %>
-<% end %>
-<% end %>
+<div class="container">
+    <% current_user.received_bookings.each do |booking| %>
+  <div class="card-product">
+    <% if booking.status == "pending" %>
+      <% if booking.listing.user.photo.attached? %>
+          <%= cl_image_tag booking.listing.user.photo.key,  style: "object-fit: cover" %>
+          <% end %>
+    <%= booking.start_date %>
+    <%= booking.end_date %>
+     <%= link_to accept_path(booking, {status: "confirmed"}), data: {turbo_method: :patch} do %>
+            <i class="fa-solid fa-circle-check" style="color: #186678;"></i>
+            <% end %>
+    <%# <%= link_to "Accept", accept_path(booking), data: {turbo_method: :patch} %>
+    <%# <%= link_to "Reject", reject_path(booking), data: {turbo_method: :patch} %>
+    <%= link_to reject_path(booking, {status: "cancelled"}), data: {turbo_method: :patch} do %>
+     <i class="fa-solid fa-trash-can" style="color: #186678;"></i>
+      <% end %>
+    <% end %>
+  </div>
+    <% end %>
+</div>
 
 <div data-controller="toggle">
   <% if @past_bookings.any? || @future_bookings.any? %>
@@ -20,7 +34,7 @@
     <button data-action="click->toggle#future" class="btn btn-ghost">Upcoming bookings</button>
   </div>
 
-  <div class="card-grid">
+  <div>
     <div class="container">
 
       <div data-toggle-target="togglableElement" class="d-none">
@@ -38,8 +52,9 @@
                   <i class="fa-regular fa-pen-to-square" style="color: #186678;"></i>
                 <% end %>
                 <%# <td><%= link_to "Edit Booking", edit_booking_path(booking)</td> %>
-                <td><%= button_to "Delete this booking", booking, method: :delete %></td>
+                <td><%= link_to destroy_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"} do %></td>
                 <i class="fa-solid fa-trash-can" style="color: #186678;"></i>
+                <% end %>
               </div>
             </tr>
           </div>
@@ -65,8 +80,9 @@
                   <%# <td><%= link_to "Edit Booking", edit_booking_path(booking)</td> %>
                   <%# <%= link_to booking(booking), method: :delete %>
                   <%# <i class="fa-solid fa-trash-can" style="color: #186678;"></i> %>
-                  <td><%= button_to "Delete this booking", booking, method: :delete %></td>
-                  <i class="fa-regular fa-trash-can"></i>
+                 <td><%= link_to destroy_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete?"} do %></td>
+                <i class="fa-solid fa-trash-can" style="color: #186678;"></i>
+                <% end %>
                 </tr>
               </div>
             </div>
