@@ -15,8 +15,12 @@
     <div class="content-container">
       <div>
         <%= render "shared/navbar" %>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <% if flash[:notice].present? %>
+          <p class="notice"><%= flash[:notice] %></p>
+        <% end %>
+         <% if flash[:alert].present? %>
+          <p class="alert"><%= flash[:alert] %></p>
+        <% end %>
         <%= yield %>
       </div>
       
