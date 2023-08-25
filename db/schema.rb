@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_22_133109) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_102742) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_22_133109) do
   create_table "listings", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "rating"
+    t.integer "rating", default: 0
     t.bigint "user_id", null: false
     t.string "listing_address"
     t.datetime "created_at", null: false
