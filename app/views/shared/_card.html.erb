@@ -10,7 +10,14 @@
       <h2><%= listing.title %></h2>
       <p><%= listing.description %></p>
     </div>
-    <h2 class="card-listing-pricing">Rating: <%= listing.rating %></h2>
+    <div class="d-flex">
+    <% listing.rating.times do %>
+    <h2 class="card-listing-pricing"><i class="fa-solid fa-star"></i></h2>
+    <% end %>
+    <% (5 - listing.rating).times do %>
+    <h2 class="card-listing-pricing"><i class="fa-regular fa-star"></i></h2>
+    <% end %>
+    </div>
     <% if listing.user.photo.attached? %>
     <%= cl_image_tag listing.user.photo.key, class: "card-listing-user avatar-bordered" %>
     <% else %>
