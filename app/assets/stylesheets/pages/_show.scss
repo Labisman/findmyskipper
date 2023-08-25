@@ -61,6 +61,11 @@ h2 {
   border: none;
   border-radius: 5px;
   margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+#back {
+  background-color: #7db9b3;
 }
 
 .destroy-button {
@@ -84,6 +89,7 @@ h2 {
 
 .card-product {
   margin-top: 20px;
+  margin-bottom: 20px;
   overflow: hidden;
   height: 250px;
   background: white;
