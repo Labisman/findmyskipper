@@ -17,25 +17,22 @@ class ListingsController < ApplicationController
     @listing = Listing.new
   end
 
-def create
-  @listing = Listing.new(listing_params_create)
-  @listing.user = current_user
-    respond_to do |format|
-      if params[:listing][:photos].present?
+  def create
+    @listing = Listing.new(listing_params_create)
+    @listing.user = current_user
+    if params[:listing][:photos].present?
       params[:listing][:photos].each do |photo|
-          @listing.photos.attach(photo)
-        end
+        @listing.photos.attach(photo)
       end
-
     end
-
-    if @listing.save
-      format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
-      format.json { render :show, status: :created, location: @listing }
-    else
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @listing.errors, status: :unprocessable_entity }
-    end
+    respond_to do |format|
+      if @listing.save
+        format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
+        format.json { render :show, status: :created, location: @listing }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @listing.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -43,16 +40,13 @@ def create
   end
 
   def update
-      if params[:listing][:photos].present?
-        params[:listing][:photos].each do |photo|
+    if params[:listing][:photos].present?
+      params[:listing][:photos].each do |photo|
         @listing.photos.attach(photo)
       end
     end
 
-    if @listing.update(listin g_params)
-
     if @listing.update(listing_params_update)
-
       redirect_to @listing, notice: "Listing was successfully updated."
     else
       render :edit
